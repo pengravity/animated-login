@@ -1,7 +1,12 @@
 import './AuthContainer.scss';
+import Login from './Login';
 
 const AuthContainer = () => {
-  return <div>AuthContainer</div>;
+  return (
+    <div>
+      <Login />
+    </div>
+  );
 };
 
 export default AuthContainer;

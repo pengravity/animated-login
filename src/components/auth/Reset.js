@@ -1,7 +1,7 @@
 import ResetImg from '../../assets/forgot.svg';
 import { SlClose } from 'react-icons/sl';
 
-const Reset = () => {
+const Reset = ({ onLogin }) => {
   return (
     <div className='main-container --flex-center'>
       <div className='form-container reset'>
@@ -17,7 +17,7 @@ const Reset = () => {
             We will send you a reset link!
           </span>
           <div className='close'>
-            <SlClose className='--color-danger' size={32} />
+            <SlClose className='--color-danger' size={32} onClick={onLogin} />
           </div>
         </form>
       </div>

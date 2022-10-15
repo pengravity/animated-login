@@ -1,6 +1,6 @@
 import RegisterImg from '../../assets/register.svg';
 
-const Register = () => {
+const Register = ({ onLogin }) => {
   return (
     <div className='main-container --flex-center'>
       <div className='form-container'>
@@ -18,7 +18,7 @@ const Register = () => {
 
           <span className='--text-sm --block'>
             Have an account?{' '}
-            <a href='#' className='--text-sm'>
+            <a href='#' className='--text-sm' onClick={onLogin}>
               Login
             </a>
           </span>

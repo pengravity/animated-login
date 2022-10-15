@@ -1,6 +1,6 @@
 import LoginImg from '../../assets/login.svg';
 
-const Login = () => {
+const Login = ({ onRegister, onReset }) => {
   return (
     <div className='main-container --flex-center'>
       <div className='img-container'>
@@ -16,12 +16,12 @@ const Login = () => {
             placeholder='Password'
           />
           <button className='--btn --btn-primary --btn-block'>Login</button>
-          <a href='#' className='--text-sm'>
+          <a href='#' className='--text-sm' onClick={onReset}>
             Forgot password?
           </a>
           <span className='--text-sm --block'>
             Don't have an account?{' '}
-            <a href='#' className='--text-sm'>
+            <a href='#' className='--text-sm' onClick={onRegister}>
               Register
             </a>
           </span>

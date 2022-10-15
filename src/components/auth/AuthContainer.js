@@ -6,32 +6,32 @@ import Register from './Register';
 import Reset from './Reset';
 
 const AuthContainer = () => {
-  const [login, setLogin] = useState(false);
-  const [register, setRegister] = useState(false);
-  const [reset, setReset] = useState(true);
+  const [auth, setAuth] = useState({
+    login: true,
+    register: false,
+    reset: false,
+  });
+
+  const handleLogin = () => {
+    setAuth({ login: true, register: false, reset: false });
+  };
 
   const handleRegister = () => {
-    setLogin(false);
-    setRegister(true);
+    setAuth({ login: false, register: true, reset: false });
   };
 
   const handleReset = () => {
-    setLogin(false);
-    setReset(true);
-  };
-
-  const handleLogin = () => {
-    setLogin(true);
-    setRegister(false);
-    setReset(false);
+    setAuth({ login: false, register: false, reset: true });
   };
 
   return (
     <section className='--flex-center --100vh  '>
       <div className='container box'>
-        {login && <Login onRegister={handleRegister} onReset={handleReset} />}
-        {register && <Register onLogin={handleLogin} />}
-        {reset && <Reset onLogin={handleLogin} />}
+        {auth.login && (
+          <Login onRegister={handleRegister} onReset={handleReset} />
+        )}
+        {auth.register && <Register onLogin={handleLogin} />}
+        {auth.reset && <Reset onLogin={handleLogin} />}
       </div>
     </section>
   );

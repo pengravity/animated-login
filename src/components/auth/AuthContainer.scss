@@ -8,6 +8,7 @@
   border-radius: 5px;
   overflow: hidden;
   box-shadow: var(--box-shadow);
+  box-shadow: 0 3px 30px rgba(0, 0, 0, 0.5);
 }
 
 .img-container {
@@ -57,4 +58,23 @@
 
 form a {
   text-decoration: none;
+}
+
+.reset {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+  .img-container {
+    display: none;
+  }
+  .form-container {
+    width: 100%;
+  }
 }

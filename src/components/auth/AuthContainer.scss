@@ -79,3 +79,15 @@ form a {
     width: 100%;
   }
 }
+
+//visibility toggle
+.password {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}

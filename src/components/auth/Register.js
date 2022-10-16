@@ -1,6 +1,14 @@
 import RegisterImg from '../../assets/register.svg';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { useState } from 'react';
 
 const Register = ({ onLogin }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className='main-container --flex-center'>
       <div className='form-container'>
@@ -9,11 +17,16 @@ const Register = ({ onLogin }) => {
           <input type='text' className='--width-100' placeholder='Username' />
           <input type='email' className='--width-100' placeholder='Email' />
 
-          <input
-            type='password'
-            className='--width-100'
-            placeholder='Password'
-          />
+          <div className='password'>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              className='--width-100'
+              placeholder='Password'
+            />
+            <span className='icon' onClick={handleTogglePassword}>
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </span>
+          </div>
           <button className='--btn --btn-primary --btn-block'>Register</button>
 
           <span className='--text-sm --block'>

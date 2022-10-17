@@ -53,7 +53,12 @@ const Register = ({ onLogin }) => {
     } else {
       setPassLength(false);
     }
-  }, [pass]);
+    if (passLetter && passNumber && passSpecial && passLength) {
+      setPassComplete(true);
+    } else {
+      setPassComplete(false);
+    }
+  }, [pass, passLetter, passLength, passNumber, passSpecial]);
 
   return (
     <div className='main-container --flex-center'>
@@ -76,7 +81,16 @@ const Register = ({ onLogin }) => {
               {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
             </span>
           </div>
-          <button className='--btn --btn-primary --btn-block'>Register</button>
+          <button
+            disabled={!passComplete}
+            className={
+              passComplete
+                ? '--btn --btn-primary --btn-block'
+                : '--btn --btn-primary --btn-block btn-disabled'
+            }
+          >
+            Register
+          </button>
 
           <span className='--text-sm --block'>
             Have an account?{' '}

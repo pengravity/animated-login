@@ -5,8 +5,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { FaCheck } from 'react-icons/fa';
 
-const Register = ({ onLogin }) => {
-  const [showPassword, setShowPassword] = useState(false);
+const Register = ({ onLogin, onShowPassword, onTogglePassword }) => {
   const [showIndicator, setShowIndicator] = useState(false);
   const [pass, setPass] = useState('');
 
@@ -17,10 +16,6 @@ const Register = ({ onLogin }) => {
   const [passLength, setPassLength] = useState(false);
 
   const [passComplete, setPassComplete] = useState(false);
-
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
 
   const handleShowIndicator = () => {
     setShowIndicator(true);
@@ -82,15 +77,15 @@ const Register = ({ onLogin }) => {
 
           <div className='password'>
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={onShowPassword ? 'text' : 'password'}
               className='--width-100'
               placeholder='Password'
               onFocus={handleShowIndicator}
               value={pass}
               onChange={(e) => setPass(e.target.value)}
             />
-            <span className='icon' onClick={handleTogglePassword}>
-              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            <span className='icon' onClick={onTogglePassword}>
+              {onShowPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
             </span>
           </div>
           <button

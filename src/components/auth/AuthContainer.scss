@@ -91,3 +91,20 @@ form a {
     cursor: pointer;
   }
 }
+
+.hide-indicator {
+  display: none;
+}
+
+.show-indicator {
+  display: block;
+  animation: slide-up 0.5s ease;
+}
+
+.pass-green {
+  color: green;
+}
+
+.pass-red {
+  color: red;
+}

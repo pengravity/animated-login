@@ -10,6 +10,7 @@ const Register = ({ onLogin }) => {
   const [showIndicator, setShowIndicator] = useState(false);
   const [pass, setPass] = useState('');
 
+  const [passLength12, setPassLength12] = useState(false);
   const [passLetter, setPassLetter] = useState(false);
   const [passNumber, setPassNumber] = useState(false);
   const [passSpecial, setPassSpecial] = useState(false);
@@ -26,7 +27,15 @@ const Register = ({ onLogin }) => {
   };
 
   useEffect(() => {
-    // check lower and uppercase
+    //at least 12 characters
+
+    if (pass.length >= 12) {
+      setPassLength12(true);
+    } else {
+      setPassLength12(false);
+    }
+
+    // check lower and uppercase letters
     if (pass.match(/([a-z].*[A-Z]|.*[a-z])/)) {
       setPassLetter(true);
     } else {
@@ -53,12 +62,15 @@ const Register = ({ onLogin }) => {
     } else {
       setPassLength(false);
     }
-    if (passLetter && passNumber && passSpecial && passLength) {
+    if (
+      passLength12 ||
+      (passLetter && passNumber && passSpecial && passLength)
+    ) {
       setPassComplete(true);
     } else {
       setPassComplete(false);
     }
-  }, [pass, passLetter, passLength, passNumber, passSpecial]);
+  }, [pass, passLetter, passLength, passNumber, passSpecial, passLength12]);
 
   return (
     <div className='main-container --flex-center'>
@@ -102,10 +114,27 @@ const Register = ({ onLogin }) => {
           <div className={showIndicator ? 'show-indicator' : 'hide-indicator'}>
             <ul className='--list-style-none --card --bg-grey --text-sm --p '>
               <p className='--text-sm'> Password Strength Indicator </p>
+
+              <li className={passLength12 ? 'pass-green' : 'pass-red'}>
+                <span className='--align-center'>
+                  {passLength12 ? <FaCheck /> : <GoPrimitiveDot />}
+                  &nbsp; At least 12 Characters OR
+                </span>
+              </li>
+
+              <li>-----------------------------</li>
+
+              <li className={passLength ? 'pass-green' : 'pass-red'}>
+                <span className='--align-center'>
+                  {passLength ? <FaCheck /> : <GoPrimitiveDot />}
+                  &nbsp; At least 8 Characters
+                </span>
+              </li>
+
               <li className={passLetter ? 'pass-green' : 'pass-red'}>
                 <span className='--align-center'>
                   {passLetter ? <FaCheck /> : <GoPrimitiveDot />}
-                  &nbsp; Lowercase & Uppercase
+                  &nbsp; Lowercase & Uppercase letters
                 </span>
               </li>
               <li className={passNumber ? 'pass-green' : 'pass-red'}>
@@ -118,12 +147,6 @@ const Register = ({ onLogin }) => {
                 <span className='--align-center'>
                   {passSpecial ? <FaCheck /> : <GoPrimitiveDot />}
                   &nbsp; Special Character (!@$#%^&*)
-                </span>
-              </li>
-              <li className={passLength ? 'pass-green' : 'pass-red'}>
-                <span className='--align-center'>
-                  {passLength ? <FaCheck /> : <GoPrimitiveDot />}
-                  &nbsp; At least 8 Characters
                 </span>
               </li>
             </ul>
